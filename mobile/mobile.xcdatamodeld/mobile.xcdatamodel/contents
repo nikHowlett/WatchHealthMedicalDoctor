@@ -1,4 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Doctor" representedClassName="Doctor" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="NotifyTime" syncable="YES">
+        <attribute name="firstOne" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="nextOne" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+    </entity>
+    <entity name="SleepHistoryObject" representedClassName="SleepHistoryObject" syncable="YES">
+        <attribute name="sleepEnd" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sleepQuality" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sleepStart" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Survey" representedClassName="Survey" syncable="YES">
+        <attribute name="results" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timeStamp" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Doctor" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="SleepHistoryObject" positionX="-36" positionY="27" width="128" height="90"/>
+        <element name="Survey" positionX="-54" positionY="-9" width="128" height="75"/>
+        <element name="NotifyTime" positionX="-45" positionY="27" width="128" height="75"/>
+    </elements>
 </model>

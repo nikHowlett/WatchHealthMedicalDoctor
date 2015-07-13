@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="7701"/>
+    </dependencies>
+    <scenes>
+        <!--How Sleepy Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="HowSleepyInterfaceController" customModule="mobile_WatchKit_Extension">
+                    <items>
+                        <label alignment="left" text="Welcome to the PDSleep App!" numberOfLines="2" id="x8L-z4-IdV"/>
+                        <button width="1" alignment="left" title="CheckUp" id="ey6-pq-18f">
+                            <connections>
+                                <segue destination="eQe-Go-dwr" kind="push" id="hbC-sa-gnn"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="JustWokeUp" id="JEy-9C-DCf">
+                            <connections>
+                                <segue destination="fCT-o2-0oz" kind="push" id="aVQ-fa-M5J"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Info" id="d9V-i8-IPM">
+                            <connections>
+                                <segue destination="VWk-Hl-kyG" kind="push" id="wwy-5a-pba"/>
+                            </connections>
+                        </button>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="235" y="347"/>
+        </scene>
+        <!--Interface Controller-->
+        <scene sceneID="Det-Q8-pdu">
+            <objects>
+                <controller id="Mhv-6V-zrC">
+                    <items>
+                        <label width="136" height="423" alignment="left" numberOfLines="23" id="NKC-3T-ol5">
+                            <string key="text">Thank you for taking the UCB Pharma UCB Cares Doctor Notifier/Knowtifier survey, where the patient is the main focus. Your doctor is never far out of reach with the Watch App. Your data will be securely saved in our SleepScale and SleepSurvey databases where your personal information can be viewed or modified on your command. </string>
+                        </label>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="603" y="-85"/>
+        </scene>
+        <!--Sleep Scale Interface Controller-->
+        <scene sceneID="y7W-jB-Eo3">
+            <objects>
+                <controller id="eQe-Go-dwr" customClass="SleepScaleInterfaceController" customModule="mobile_WatchKit_Extension">
+                    <items>
+                        <label alignment="left" text="How tired are you feeling?" numberOfLines="3" id="ZQM-Ji-ooF"/>
+                        <slider width="1" alignment="left" value="5" maximum="10" steps="10" id="Ayw-GS-8uo">
+                            <connections>
+                                <action selector="painslider:" destination="eQe-Go-dwr" id="z4a-h0-OBB"/>
+                            </connections>
+                        </slider>
+                        <label alignment="left" text="Tiredness: 5" id="PPS-Mx-fpS"/>
+                        <button width="1" alignment="left" title="Save" id="u8h-Bm-xv6">
+                            <connections>
+                                <action selector="sendthatshit" destination="eQe-Go-dwr" id="hvv-YX-3AO"/>
+                                <segue destination="Mhv-6V-zrC" kind="push" identifier="sch" id="kP1-b0-iOe"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="painlabel" destination="PPS-Mx-fpS" id="N5g-nd-bK6"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="419" y="185"/>
+        </scene>
+        <!--Sleep Qual Interface Controller-->
+        <scene sceneID="lFh-JW-Dk7">
+            <objects>
+                <controller id="fCT-o2-0oz" customClass="SleepQualInterfaceController" customModule="mobile_WatchKit_Extension">
+                    <items>
+                        <label alignment="left" text="How would you rate the quality of your sleep?" numberOfLines="3" id="hMO-EQ-i6H"/>
+                        <slider width="1" alignment="left" value="5" maximum="10" steps="10" id="v9f-p8-NL8">
+                            <connections>
+                                <action selector="sleepSliderDidMove:" destination="fCT-o2-0oz" id="IcS-XB-vsn"/>
+                            </connections>
+                        </slider>
+                        <label alignment="left" text="Quality: 5" id="6Z4-f1-USl"/>
+                        <button width="1" alignment="left" title="Save" id="HaJ-1r-7nJ">
+                            <connections>
+                                <segue destination="Mhv-6V-zrC" kind="push" identifier="shc" id="CN2-7V-X7i"/>
+                            </connections>
+                        </button>
+                    </items>
+                    <connections>
+                        <outlet property="sqLabel" destination="6Z4-f1-USl" id="xvl-kO-8Ev"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="603" y="340"/>
+        </scene>
+        <!--Interface Controller-->
+        <scene sceneID="ZmN-nU-9VD">
+            <objects>
+                <controller id="VWk-Hl-kyG">
+                    <items>
+                        <label alignment="left" text="Welcome to the UCB Pharma Watch App, connecting patients and doctors for a better next-gen patient experience." numberOfLines="9" id="aMb-iu-4j8"/>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="419" y="581"/>
+        </scene>
+        <!--Glance Interface Controller-->
+        <scene sceneID="BOz-TT-tkC">
+            <objects>
+                <glanceController spacing="0.0" topTemplateType="groupLeftLarge" bottomTemplateType="body6Footer" id="0uZ-2p-rRc" customClass="GlanceController" customModule="mobile_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <group alignment="left" backgroundImage="88x88-2" id="t8f-Gd-c4y"/>
+                        <label alignment="left" text="U" id="HO5-td-axa"/>
+                        <label alignment="left" text="C" id="tEr-p3-Wdd"/>
+                        <label alignment="left" text="B" id="3sz-Xq-QZa"/>
+                        <label alignment="left" id="qKy-Tb-DBZ">
+                            <string key="text">Doctor∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙Technology∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙Centered∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙Intuitive∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙Patient∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙Pharma∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙</string>
+                        </label>
+                        <label alignment="left" text="2015 All Rights Reserved" id="iUx-d2-Lum"/>
+                    </items>
+                    <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
+                </glanceController>
+            </objects>
+            <point key="canvasLocation" x="235" y="672"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="UCB CheckUp!" id="3k0-dk-lNe"/>
+                        <label alignment="left" text="Alert Label" numberOfLines="4" id="XkS-y5-khE"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="someCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="XkS-y5-khE" id="49B-RR-99y"/>
+                        <segue destination="gdX-wl-uQE" kind="relationship" relationship="dynamicNotificationInterface" id="fKh-qV-3T2"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="235" y="901"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="aOd-08-wYj">
+            <objects>
+                <notificationController id="Zd8-zy-wOe">
+                    <items>
+                        <label alignment="left" text="Alert Label" id="Su4-3U-lhn"/>
+                        <label alignment="left" text="heartRateWake" id="MWK-GH-Tog"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="heartRateWake" id="NmT-ed-9qO"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="Su4-3U-lhn" id="iWu-i6-Yos"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="235" y="1126"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="KIl-fV-djm">
+            <objects>
+                <controller id="gdX-wl-uQE" customClass="NotificationController" customModule="mobile_WatchKit_App" customModuleProvider="target">
+                    <items>
+                        <label alignment="left" text="someCategoryd" id="cMZ-rg-CXA"/>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="553" y="901"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="CN2-7V-X7i"/>
+    </inferredMetricsTieBreakers>
+</document>
