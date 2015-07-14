@@ -70,7 +70,8 @@ class SleepScaleInterfaceController: WKInterfaceController {
     /*@IBAction func painslider(value: Float) {
         Nub = Int(value * 1)
         janet = "Tiredness: \(Nub)"
-        painlabel.setText(janet)
+        painlabel.setText
+    //this is a test(janet)
     }
     */
     
