@@ -144,9 +144,9 @@ class ViewCon3troller: UIViewController {
             typeLengthTime.text = "Monthly"
             setupGraphDisplayMonthly()
             if (whichData.selectedSegmentIndex == 1) {
-                //loadMonthly()
+                loadMonthly()
             } else {
-                //loadMonthlySleep()
+                loadMonthlySleep()
             }
             setupGraphDisplay()
         case 3:
@@ -179,7 +179,7 @@ class ViewCon3troller: UIViewController {
             } else if (timePeriodControl.selectedSegmentIndex == 1) {
                 loadWeeklySleep()
             } else if (timePeriodControl.selectedSegmentIndex == 2) {
-                //loadMonthlySleep()
+                loadMonthlySleep()
             } else {
                 //loadAnnuallySleep()
             }
@@ -199,7 +199,7 @@ class ViewCon3troller: UIViewController {
             } else if (timePeriodControl.selectedSegmentIndex == 1) {
                 loadWeekly()
             } else if (timePeriodControl.selectedSegmentIndex == 2) {
-                //loadMonthly()
+                loadMonthly()
             } else {
                 //loadAnnually()
             }
@@ -253,9 +253,9 @@ class ViewCon3troller: UIViewController {
         graphView.graphPoints = []
         for (var i = 0; i < tiredz.count; i++) {
             var hiding = surveys[(tiredz.count-i) - 1].timeStamp
-            var hiking = hiding.substringToIndex(advance(hiding.startIndex, 9))
+            var hiking = hiding.substringToIndex(advance(hiding.startIndex, 10))
             var hifing = "\(now)"
-            var hijing = hifing.substringToIndex(advance(hifing.startIndex, 9))
+            var hijing = hifing.substringToIndex(advance(hifing.startIndex, 10))
             if (hijing == hiking) {
                 graphView.graphPoints.append(tiredz[i])
             }
@@ -269,9 +269,9 @@ class ViewCon3troller: UIViewController {
         print("printing slpqal.count: \(slpqal.count)")
         for (var i = 0; i < slpqal.count; i++) {
             let hiding = sleeps[(slpqal.count-i) - 1].sleepStart
-            let hiking = hiding.substringToIndex(advance(hiding.startIndex, 9))
+            let hiking = hiding.substringToIndex(advance(hiding.startIndex, 10))
             let hifing = "\(now)"
-            let hijing = hifing.substringToIndex(advance(hifing.startIndex, 9))
+            let hijing = hifing.substringToIndex(advance(hifing.startIndex, 10))
             print(hijing)
             print(hiking)
             if (hijing == hiking) {
@@ -316,13 +316,13 @@ class ViewCon3troller: UIViewController {
         var range = [""]
         print(slpqal.count)
         for (var i = 0; i < slpqal.count-1; i++) {
-            var thisTimeStampRaw = sleeps[(slpqal.count-i) - 1].sleepEnd
+            var thisTimeStampRaw = sleeps[slpqal.count-((slpqal.count-i) - 1)].sleepEnd
             var hiking = thisTimeStampRaw.substringToIndex(advance(thisTimeStampRaw.startIndex,10))
             var jacobson = false
             for (var jkl = 0; jkl < convenientPastSeven.count; jkl++) {
                 if (convenientPastSeven[jkl] == hiking) {
                     print(slpqal)
-                    graphView.graphPoints.append(slpqal[(slpqal.count-i)-1])
+                    graphView.graphPoints.append(slpqal[slpqal.count-((slpqal.count-i)-1)])
                     jacobson = true
                 }
                 if (jkl == convenientPastSeven.count-1) && (jacobson == false) {
@@ -391,13 +391,13 @@ class ViewCon3troller: UIViewController {
         let convenientPastSeven = [yesterday, yesterday2, yesterday3, yesterday4, yesterday5, yesterday6, yesterday7]
         graphView.graphPoints = []
         for (var i = 0; i < tiredz.count-1; i++) {
-            var thisTimeStampRaw = surveys[(tiredz.count-i) - 1].timeStamp
+            var thisTimeStampRaw = surveys[tiredz.count-((tiredz.count-i) - 1)].timeStamp
             var hiking = thisTimeStampRaw.substringToIndex(advance(thisTimeStampRaw.startIndex,10))
             var jacobson = false
             for (var jkl = 0; jkl < convenientPastSeven.count; jkl++) {
                 if (convenientPastSeven[jkl] == hiking) {
                     print(slpqal)
-                    graphView.graphPoints.append(tiredz[(tiredz.count-i)-1])
+                    graphView.graphPoints.append(tiredz[tiredz.count-((tiredz.count-i)-1)])
                     jacobson = true
                 }
                 if (jkl == convenientPastSeven.count-1) && (jacobson == false) {
@@ -416,17 +416,20 @@ class ViewCon3troller: UIViewController {
         for (var i = 0; i < tiredz.count-1; i++) {
             var thisTimeStampRaw = surveys[(tiredz.count-i) - 1].timeStamp
             var hiking = thisTimeStampRaw.substringToIndex(advance(thisTimeStampRaw.startIndex,7))
-            var jacobson = false
+            if (monthChecker == hiking) {
+            graphView.graphPoints.append(tiredz[(tiredz.count-i)-1])
+            }
+            /*var jacobson = false
             for (var jkl = 0; jkl < tiredz.count; jkl++) {
                 if (monthChecker == hiking) {
                     //print(slpqal)
-                    graphView.graphPoints.append(tiredz[(tiredz.count-i)-1])
+                    
                     jacobson = true
                 }
                 /*if (jkl == convenientPastSeven.count-1) && (jacobson == false) {
                     graphView.graphPoints.append(0)
                 }*/
-            }
+            }*/
         }
         maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
     }
@@ -439,7 +442,10 @@ class ViewCon3troller: UIViewController {
         for (var i = 0; i < slpqal.count-1; i++) {
             var thisTimeStampRaw = sleeps[(slpqal.count-i) - 1].sleepEnd
             var hiking = thisTimeStampRaw.substringToIndex(advance(thisTimeStampRaw.startIndex,7))
-            var jacobson = false
+            if (monthChecker == hiking) {
+                graphView.graphPoints.append(slpqal[(slpqal.count-i)-1])
+            }
+            /*var jacobson = false
             for (var jkl = 0; jkl < slpqal.count; jkl++) {
                 if (monthChecker == hiking) {
                     //print(slpqal)
@@ -449,7 +455,7 @@ class ViewCon3troller: UIViewController {
                 /*if (jkl == convenientPastSeven.count-1) && (jacobson == false) {
                 graphView.graphPoints.append(0)
                 }*/
-            }
+            }*/
         }
         maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
     }

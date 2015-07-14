@@ -250,7 +250,7 @@ class SurveyNotificationSystemViewController: UIViewController {
                 animateMyViews(csslol, viewToShow: cssolo)
                 animateMyViews(pointless47, viewToShow: pointesl22)
                 //csslol.text = "Back"
-                UIApplication.sharedApplication().cancelAllLocalNotifications()
+                //UIApplication.sharedApplication().cancelAllLocalNotifications()
             }
             else{
                 animateMyViews(datePicker, viewToShow: ntso)
@@ -308,13 +308,27 @@ class SurveyNotificationSystemViewController: UIViewController {
             //with a solution yourself
             //so exciting
             //that was worth 5000 dollars
+            /* let localNotification = UILocalNotification()
+            localNotification.soundName = "beep-01a.wav"
+            localNotification.alertTitle = "Take your next survey!"
+            localNotification.alertBody = "Doctor Jenkins says 'Take a UCB watch-app survey!'"
+            localNotification.alertAction = "Take Survey"
+            localNotification.category = "someCategory"
+            
+            let seconds = howOftenPicker.countDownDuration
+            print(seconds, appendNewline: false)
+            localNotification.fireDate = NSDate(timeIntervalSinceNow: seconds)
+            UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+            */
             let localNotification = UILocalNotification()
             localNotification.soundName = "beep-01a.wav"
             localNotification.alertTitle = "Take your first survey of the day!"
             localNotification.alertBody = "Just respond on your Apple Watch to get started."
             localNotification.alertAction = "Take Survey"
-            localNotification.category = "surveyReminderCategory"
-            localNotification.fireDate = fixNotificationDate(datePicker.date)
+            localNotification.category = "someCategory"
+            print(datePicker.date)
+            //localNotification.fireDate = fixNotificationDate(datePicker.date)
+            localNotification.fireDate = datePicker.date
             localNotification.repeatInterval = .Day
             
             UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
@@ -393,7 +407,7 @@ class SurveyNotificationSystemViewController: UIViewController {
             dateComponets.second = 0
             
             let fixedDate: NSDate! = NSCalendar.currentCalendar().dateFromComponents(dateComponets)
-            
+            print(fixedDate)
             return fixedDate
         }
         
