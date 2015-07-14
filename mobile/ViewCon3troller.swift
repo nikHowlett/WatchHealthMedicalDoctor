@@ -260,7 +260,12 @@ class ViewCon3troller: UIViewController {
                 graphView.graphPoints.append(tiredz[i])
             }
         }
-        maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
+        if graphView.graphPoints.count > 0 {
+            print(graphView.graphPoints[0])
+            maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
+        } else {
+            maxLabel.text = "N/A"
+        }
     }
     
     func loadDailySlepp() {
@@ -278,8 +283,12 @@ class ViewCon3troller: UIViewController {
                 graphView.graphPoints.append(slpqal[i])
             }
         }
-        print(graphView.graphPoints[0])
-        maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
+        if graphView.graphPoints.count > 0 {
+            print(graphView.graphPoints[0])
+            maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
+        } else {
+            maxLabel.text = "N/A"
+        }
     }
     
     func loadWeeklySleep() {
@@ -362,7 +371,12 @@ class ViewCon3troller: UIViewController {
                 }
             }
         }*/
-        maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
+        if graphView.graphPoints.count > 0 {
+            print(graphView.graphPoints[0])
+            maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
+        } else {
+            maxLabel.text = "N/A"
+        }
     }
 
     
@@ -405,7 +419,12 @@ class ViewCon3troller: UIViewController {
                 }
             }
         }
-        maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
+        if graphView.graphPoints.count > 0 {
+            print(graphView.graphPoints[0])
+            maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
+        } else {
+            maxLabel.text = "N/A"
+        }
     }
 
     func loadMonthly() {
@@ -431,7 +450,12 @@ class ViewCon3troller: UIViewController {
                 }*/
             }*/
         }
-        maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
+        if graphView.graphPoints.count > 0 {
+            print(graphView.graphPoints[0])
+            maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
+        } else {
+            maxLabel.text = "N/A"
+        }
     }
     
     func loadMonthlySleep() {
@@ -457,7 +481,12 @@ class ViewCon3troller: UIViewController {
                 }*/
             }*/
         }
-        maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
+        if graphView.graphPoints.count > 0 {
+            print(graphView.graphPoints[0])
+            maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
+        } else {
+            maxLabel.text = "N/A"
+        }
     }
     
     func setupGraphDisplayDaily() {
