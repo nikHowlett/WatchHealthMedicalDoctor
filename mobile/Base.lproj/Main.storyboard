@@ -1410,6 +1410,12 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No Data Available" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIh-xA-hNE">
+                                        <rect key="frame" x="83" y="114" width="134" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
@@ -1432,6 +1438,7 @@
                         <outlet property="averageWaterDrunk" destination="QtE-Iw-fEf" id="daf-IG-4lM"/>
                         <outlet property="graphView" destination="MtQ-0s-ELq" id="vAa-8F-6RY"/>
                         <outlet property="maxLabel" destination="eqi-HF-gjd" id="XZd-ZU-3ta"/>
+                        <outlet property="nottoday" destination="eIh-xA-hNE" id="fE8-MI-xxO"/>
                         <outlet property="timePeriodControl" destination="1Zj-gY-llY" id="2EF-eb-8RF"/>
                         <outlet property="typeLengthTime" destination="m6C-fO-LiU" id="CcO-7S-O2v"/>
                         <outlet property="whichData" destination="EZu-oH-5QP" id="6wM-yF-u5s"/>
@@ -1995,7 +2002,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qo8-Ub-gLR" customClass="GraphView" customModule="mobile" customModuleProvider="target">
-                                <rect key="frame" x="147" y="169" width="300" height="250"/>
+                                <rect key="frame" x="131" y="219" width="300" height="250"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Water Drunk" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ovw-QI-jju">
                                         <rect key="frame" x="8" y="8" width="92" height="21"/>

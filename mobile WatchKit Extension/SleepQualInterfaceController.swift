@@ -27,7 +27,7 @@ class SleepQualInterfaceController: WKInterfaceController {
 
     
     @IBAction func sleepSliderDidMove(value: Float) {
-        sliderValue = Int(value * 1)
+        sliderValue = Int(value)
         sqLabelText = "Quality: \(sliderValue)"
         sqLabel.setText(sqLabelText)
     }
@@ -44,6 +44,7 @@ class SleepQualInterfaceController: WKInterfaceController {
         }*/
         let total = "\(sqLabelText)"
         let dict: Dictionary = ["sleep massage": sliderValue]
+        print(sliderValue)
         var userInfo = ["justWokeUp": true,
         "message": total]
         print("dataisbeensent", appendNewline: false)

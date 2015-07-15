@@ -197,7 +197,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             withCompletion: {succeeded, error in
                 
                 if succeeded{
-                    print("Enabled background delivery of HR changes")
+                    print("Enabled background delivery of weight changes")
                 } else {
                     if let theError = error{
                         print("Failed to enable background delivery of heart rate changes. ")

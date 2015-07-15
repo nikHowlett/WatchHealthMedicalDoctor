@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class ViewCon3troller: UIViewController {
-
+    
     lazy var managedObjectContext : NSManagedObjectContext? = {
         let appDelegate : AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         if let managedContext : NSManagedObjectContext? = appDelegate.managedObjectContext {
@@ -29,6 +29,7 @@ class ViewCon3troller: UIViewController {
     var slpqal : [Int] = [Int]()
     
     var isGraphViewShowing = true
+    @IBOutlet weak var nottoday: UILabel!
     @IBOutlet weak var averageWaterDrunk: UILabel!
     @IBOutlet weak var maxLabel: UILabel!
     @IBOutlet weak var typeLengthTime: UILabel!
@@ -44,6 +45,7 @@ class ViewCon3troller: UIViewController {
         whichohnerawfe.text = "Sleep Quality"
         self.navigationItem.title = "Data Visualizer"
         loadDailySlepp()
+        nottoday.hidden = true
         setupGraphDisplay()
     }
     
@@ -60,7 +62,7 @@ class ViewCon3troller: UIViewController {
         }
         var heckle = surveys.count
     }
-
+    
     func loadshit() {
         var lemons: String = "tootsie"
         //if (surveys.count < 7) {
@@ -83,17 +85,7 @@ class ViewCon3troller: UIViewController {
                         }
                     }
                 }
-                if (sleeps.count > 7) {
-                    for (var i = 0; i < 7; i++) {
-                        let l2 = sleeps.count
-                        let jankjen = sleeps[(l2-(i+1))].sleepQuality
-                        let b:Int? = Int(jankjen)
-                        if (b != nil) {
-                            slpqal.append(b!)
-                        }
-                        print("sleepqal count at load > 7 \(slpqal.count)")
-                    }
-                } else {
+                if (sleeps.count < 777777) {
                     slpqal = []
                     print(sleeps.count)
                     for (var i = 0; i < (sleeps.count); i++) {
@@ -170,7 +162,7 @@ class ViewCon3troller: UIViewController {
         case 0:
             //graphView.graphPoints = []
             /*for (var i = 0; i < slpqal.count; i++) {
-                graphView.graphPoints.append(slpqal[i])
+            graphView.graphPoints.append(slpqal[i])
             }*/
             
             whichohnerawfe.text = "Sleep Quality"
@@ -190,9 +182,9 @@ class ViewCon3troller: UIViewController {
         case 1:
             //graphView.graphPoints = []
             /*for (var i = 0; i <  tiredz.count; i++) {
-                graphView.graphPoints.append(tiredz[i])
+            graphView.graphPoints.append(tiredz[i])
             }*/
-           
+            
             self.whichohnerawfe.text = "General Tiredness"
             if (timePeriodControl.selectedSegmentIndex == 0) {
                 loadDaily()
@@ -253,19 +245,23 @@ class ViewCon3troller: UIViewController {
         graphView.graphPoints = []
         for (var i = 0; i < tiredz.count; i++) {
             var hiding = surveys[(tiredz.count-i) - 1].timeStamp
-            var hiking = hiding.substringToIndex(advance(hiding.startIndex, 10))
+            var hiking = hiding.substringToIndex(advance(hiding.startIndex, 9))
             var hifing = "\(now)"
-            var hijing = hifing.substringToIndex(advance(hifing.startIndex, 10))
+            var hijing = hifing.substringToIndex(advance(hifing.startIndex, 9))
             if (hijing == hiking) {
                 graphView.graphPoints.append(tiredz[i])
             }
         }
-        if graphView.graphPoints.count > 0 {
-            print(graphView.graphPoints[0])
-            maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
-        } else {
-            maxLabel.text = "N/A"
+        var temparr = [(Int)]()
+        //var jackwagon = 0
+        for (var k = graphView.graphPoints.count-1; k >= 0; k = k - 1) {
+            //jackwagon = (graphView.graphPoints.count-1) - k
+            //temparr.app(graphView.graphPoints[k])
+            //temparr.arrayByAddingObject(graphView.graphPoints[k])
+            temparr.append(graphView.graphPoints[k])
         }
+        graphView.graphPoints = temparr
+        maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
     }
     
     func loadDailySlepp() {
@@ -274,21 +270,21 @@ class ViewCon3troller: UIViewController {
         print("printing slpqal.count: \(slpqal.count)")
         for (var i = 0; i < slpqal.count; i++) {
             let hiding = sleeps[(slpqal.count-i) - 1].sleepStart
-            let hiking = hiding.substringToIndex(advance(hiding.startIndex, 10))
+            let hiking = hiding.substringToIndex(advance(hiding.startIndex, 9))
             let hifing = "\(now)"
-            let hijing = hifing.substringToIndex(advance(hifing.startIndex, 10))
+            let hijing = hifing.substringToIndex(advance(hifing.startIndex, 9))
             print(hijing)
             print(hiking)
             if (hijing == hiking) {
                 graphView.graphPoints.append(slpqal[i])
             }
         }
-        if graphView.graphPoints.count > 0 {
-            print(graphView.graphPoints[0])
-            maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
-        } else {
-            maxLabel.text = "N/A"
+        var temparr = [(Int)]()
+        for (var k = graphView.graphPoints.count-1; k >= 0; k = k - 1) {
+            temparr.append(graphView.graphPoints[k])
         }
+        graphView.graphPoints = temparr
+        maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
     }
     
     func loadWeeklySleep() {
@@ -325,13 +321,13 @@ class ViewCon3troller: UIViewController {
         var range = [""]
         print(slpqal.count)
         for (var i = 0; i < slpqal.count-1; i++) {
-            var thisTimeStampRaw = sleeps[slpqal.count-((slpqal.count-i) - 1)].sleepEnd
+            var thisTimeStampRaw = sleeps[(slpqal.count-i) - 1].sleepEnd
             var hiking = thisTimeStampRaw.substringToIndex(advance(thisTimeStampRaw.startIndex,10))
             var jacobson = false
             for (var jkl = 0; jkl < convenientPastSeven.count; jkl++) {
                 if (convenientPastSeven[jkl] == hiking) {
                     print(slpqal)
-                    graphView.graphPoints.append(slpqal[slpqal.count-((slpqal.count-i)-1)])
+                    graphView.graphPoints.append(slpqal[(slpqal.count-i)-1])
                     jacobson = true
                 }
                 if (jkl == convenientPastSeven.count-1) && (jacobson == false) {
@@ -339,46 +335,46 @@ class ViewCon3troller: UIViewController {
                 }
             }
         }
-            /*var currentDate = "\(now)"
-            var tStampJustYearMonthDay = hiking.substringToIndex(advance(hiking.startIndex,9))
-            var date2Mutiliate = currentDate.substringToIndex(advance(currentDate.startIndex,9))
-            var date2Mutiliate2 = currentDate.substringToIndex(advance(currentDate.startIndex,8))
-            var currentDayValue = date2Mutiliate.substringFromIndex(advance(date2Mutiliate.startIndex,9))
-            var a:Int? = Int(currentDayValue)
-            var ax:Int? = Int(currentDayValue)
-            if (a != nil) {
-                while (a >= 0) {
-                    var thisinstring = String(a)
-                    a = a! - 1
-                    var jeremy: String = date2Mutiliate2 + "\(UnicodeScalar(a!))"
-                    range += [jeremy]
-                }
-            }
-            if (ax != nil) {
-                while (ax <= 7) {
-                    var thisinstring = String(ax)
-                    ax = ax! + 1
-                    var jeremyx: String = date2Mutiliate2 + "\(UnicodeScalar(a!))"
-                    range += [jeremyx]
-                }
-            }
-            var howlongtorunthisnextwhileloop = range.count
-            print(howlongtorunthisnextwhileloop)
-            print(range)
-            for (var uio = 0; uio < range.count; uio++) {
-                if (tStampJustYearMonthDay == range[uio]) {
-                    graphView.graphPoints.append(slpqal[i])
-                }
-            }
-        }*/
-        if graphView.graphPoints.count > 0 {
-            print(graphView.graphPoints[0])
-            maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
-        } else {
-            maxLabel.text = "N/A"
+        /*var currentDate = "\(now)"
+        var tStampJustYearMonthDay = hiking.substringToIndex(advance(hiking.startIndex,9))
+        var date2Mutiliate = currentDate.substringToIndex(advance(currentDate.startIndex,9))
+        var date2Mutiliate2 = currentDate.substringToIndex(advance(currentDate.startIndex,8))
+        var currentDayValue = date2Mutiliate.substringFromIndex(advance(date2Mutiliate.startIndex,9))
+        var a:Int? = Int(currentDayValue)
+        var ax:Int? = Int(currentDayValue)
+        if (a != nil) {
+        while (a >= 0) {
+        var thisinstring = String(a)
+        a = a! - 1
+        var jeremy: String = date2Mutiliate2 + "\(UnicodeScalar(a!))"
+        range += [jeremy]
         }
+        }
+        if (ax != nil) {
+        while (ax <= 7) {
+        var thisinstring = String(ax)
+        ax = ax! + 1
+        var jeremyx: String = date2Mutiliate2 + "\(UnicodeScalar(a!))"
+        range += [jeremyx]
+        }
+        }
+        var howlongtorunthisnextwhileloop = range.count
+        print(howlongtorunthisnextwhileloop)
+        print(range)
+        for (var uio = 0; uio < range.count; uio++) {
+        if (tStampJustYearMonthDay == range[uio]) {
+        graphView.graphPoints.append(slpqal[i])
+        }
+        }
+        }*/
+        var temparr = [(Int)]()
+        for (var k = graphView.graphPoints.count-1; k >= 0; k = k - 1) {
+            temparr.append(graphView.graphPoints[k])
+        }
+        graphView.graphPoints = temparr
+        maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
     }
-
+    
     
     func loadWeekly() {
         let yesterDay = NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Day, value: -1, toDate: NSDate(), options: [])
@@ -405,13 +401,13 @@ class ViewCon3troller: UIViewController {
         let convenientPastSeven = [yesterday, yesterday2, yesterday3, yesterday4, yesterday5, yesterday6, yesterday7]
         graphView.graphPoints = []
         for (var i = 0; i < tiredz.count-1; i++) {
-            var thisTimeStampRaw = surveys[tiredz.count-((tiredz.count-i) - 1)].timeStamp
+            var thisTimeStampRaw = surveys[(tiredz.count-i) - 1].timeStamp
             var hiking = thisTimeStampRaw.substringToIndex(advance(thisTimeStampRaw.startIndex,10))
             var jacobson = false
             for (var jkl = 0; jkl < convenientPastSeven.count; jkl++) {
                 if (convenientPastSeven[jkl] == hiking) {
                     print(slpqal)
-                    graphView.graphPoints.append(tiredz[tiredz.count-((tiredz.count-i)-1)])
+                    graphView.graphPoints.append(tiredz[(tiredz.count-i)-1])
                     jacobson = true
                 }
                 if (jkl == convenientPastSeven.count-1) && (jacobson == false) {
@@ -419,14 +415,17 @@ class ViewCon3troller: UIViewController {
                 }
             }
         }
-        if graphView.graphPoints.count > 0 {
-            print(graphView.graphPoints[0])
-            maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
-        } else {
-            maxLabel.text = "N/A"
+        for (var k = 0; k < graphView.graphPoints.count-1; k++) {
+            
         }
+        var temparr = [(Int)]()
+        for (var k = graphView.graphPoints.count-1; k >= 0; k = k - 1) {
+            temparr.append(graphView.graphPoints[k])
+        }
+        graphView.graphPoints = temparr
+        maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
     }
-
+    
     func loadMonthly() {
         let now = NSDate()
         let schow = "\(now)"
@@ -435,27 +434,24 @@ class ViewCon3troller: UIViewController {
         for (var i = 0; i < tiredz.count-1; i++) {
             var thisTimeStampRaw = surveys[(tiredz.count-i) - 1].timeStamp
             var hiking = thisTimeStampRaw.substringToIndex(advance(thisTimeStampRaw.startIndex,7))
-            if (monthChecker == hiking) {
-            graphView.graphPoints.append(tiredz[(tiredz.count-i)-1])
-            }
-            /*var jacobson = false
+            var jacobson = false
             for (var jkl = 0; jkl < tiredz.count; jkl++) {
                 if (monthChecker == hiking) {
                     //print(slpqal)
-                    
+                    graphView.graphPoints.append(tiredz[(tiredz.count-i)-1])
                     jacobson = true
                 }
                 /*if (jkl == convenientPastSeven.count-1) && (jacobson == false) {
-                    graphView.graphPoints.append(0)
+                graphView.graphPoints.append(0)
                 }*/
-            }*/
+            }
         }
-        if graphView.graphPoints.count > 0 {
-            print(graphView.graphPoints[0])
-            maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
-        } else {
-            maxLabel.text = "N/A"
+        var temparr = [(Int)]()
+        for (var k = graphView.graphPoints.count-1; k >= 0; k = k - 1) {
+            temparr.append(graphView.graphPoints[k])
         }
+        graphView.graphPoints = temparr
+        maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
     }
     
     func loadMonthlySleep() {
@@ -466,10 +462,7 @@ class ViewCon3troller: UIViewController {
         for (var i = 0; i < slpqal.count-1; i++) {
             var thisTimeStampRaw = sleeps[(slpqal.count-i) - 1].sleepEnd
             var hiking = thisTimeStampRaw.substringToIndex(advance(thisTimeStampRaw.startIndex,7))
-            if (monthChecker == hiking) {
-                graphView.graphPoints.append(slpqal[(slpqal.count-i)-1])
-            }
-            /*var jacobson = false
+            var jacobson = false
             for (var jkl = 0; jkl < slpqal.count; jkl++) {
                 if (monthChecker == hiking) {
                     //print(slpqal)
@@ -479,21 +472,21 @@ class ViewCon3troller: UIViewController {
                 /*if (jkl == convenientPastSeven.count-1) && (jacobson == false) {
                 graphView.graphPoints.append(0)
                 }*/
-            }*/
+            }
         }
-        if graphView.graphPoints.count > 0 {
-            print(graphView.graphPoints[0])
-            maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
-        } else {
-            maxLabel.text = "N/A"
+        var temparr = [(Int)]()
+        for (var k = graphView.graphPoints.count-1; k >= 0; k = k - 1) {
+            temparr.append(graphView.graphPoints[k])
         }
+        graphView.graphPoints = temparr
+        maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
     }
     
     func setupGraphDisplayDaily() {
-       let noOfDays:Int = 7
+        let noOfDays:Int = 7
         graphView.setNeedsDisplay()
         //let average = graphView.graphPoints.reduce(0, combine: +)
-            // graphView.graphPoints.count
+        // graphView.graphPoints.count
         //averageWaterDrunk.text = "\(average)"
         let dateFormatter = NSDateFormatter()
         let calendar = NSCalendar.currentCalendar()
@@ -541,7 +534,7 @@ class ViewCon3troller: UIViewController {
             }
         }
     }
-
+    
     func setupGraphDisplayMonthly() {
         let noOfDays:Int = 7
         graphView.setNeedsDisplay()
@@ -558,6 +551,19 @@ class ViewCon3troller: UIViewController {
         var month = components.month-1
         let monthNameAbbrvArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
         let monthAbbrev = monthNameAbbrvArray[month]
+        let now = NSDate()
+        let schow = "\(now)"
+        var monthChecker = schow.substringToIndex(advance(schow.startIndex,10))
+        var fuckswift = "01234567"
+        var fukswift =  "2015-07-35"
+        let jent = monthChecker.substringFromIndex(fuckswift.endIndex)
+        /* 
+        let justthanumba = jankjohn.substringFromIndex(advance(jankjohn.startIndex,11))
+        let a:Int? = Int(justthanumba)
+        if (a != nil) {
+        tiredz.append(a!)
+        } else {
+        */
         var days = ["\(monthAbbrev)", "", "", "15", "", "", "30"]
         if (monthinorder == 1 || monthinorder == 3 || monthinorder == 5 || monthinorder == 7 || monthinorder == 8 || monthinorder == 10 || monthinorder == 12) {
             days = ["\(monthAbbrev)", "", "", "15", "", "", "31"]
@@ -565,6 +571,11 @@ class ViewCon3troller: UIViewController {
             days = ["\(monthAbbrev)", "", "", "14", "", "", "28"]
         } else {
             days = ["\(monthAbbrev)", "", "", "15", "", "", "30"]
+        }
+        var jahana:Int? = Int(jent)
+        if (jahana != nil) {
+            var banana = jahana!/2
+            days = ["\(monthAbbrev)", "", "", "\(banana)", "", "", "\(jahana!)"]
         }
         for i in Array((1...days.count).reverse()) {
             if let labelView = graphView.viewWithTag(i) as? UILabel {
@@ -578,7 +589,7 @@ class ViewCon3troller: UIViewController {
             }
         }
     }
-
+    
     func replace(myString: String, index: Int, newChar: Character) -> String {
         var chars = Array(myString.characters)     // gets an array of characters
         chars[index] = newChar

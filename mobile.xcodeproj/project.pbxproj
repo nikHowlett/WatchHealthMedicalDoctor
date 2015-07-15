@@ -45,6 +45,8 @@
 		D03108F31B3DD23D00C9B7C9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03108F21B3DD23D00C9B7C9 /* ProfileViewController.swift */; };
 		D0A08D971B540F7D00D613B3 /* ViewCon3troller.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A08D961B540F7D00D613B3 /* ViewCon3troller.swift */; };
 		D0A9EB411B43332D00389C46 /* LastInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A9EB401B43332D00389C46 /* LastInterfaceController.swift */; };
+		D0D842F01B5590CB009B1F24 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D842EF1B5590AE009B1F24 /* Charts.framework */; };
+		D0D842F11B5590CB009B1F24 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D0D842EF1B5590AE009B1F24 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,20 @@
 			remoteGlobalIDString = D03108A91B3C55DB00C9B7C9;
 			remoteInfo = "mobile WatchKit Extension";
 		};
+		D0D842EE1B5590AE009B1F24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0D842EA1B5590AE009B1F24 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5BA8EC401A9D14DC00CE82E1;
+			remoteInfo = Charts;
+		};
+		D0D842F21B5590CB009B1F24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0D842EA1B5590AE009B1F24 /* Charts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5BA8EC3F1A9D14DC00CE82E1;
+			remoteInfo = Charts;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -81,6 +97,17 @@
 				D03108C71B3C55DB00C9B7C9 /* mobile WatchKit Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0D842F41B5590CB009B1F24 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D0D842F11B5590CB009B1F24 /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -132,6 +159,7 @@
 		D03108F21B3DD23D00C9B7C9 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D0A08D961B540F7D00D613B3 /* ViewCon3troller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewCon3troller.swift; sourceTree = "<group>"; };
 		D0A9EB401B43332D00389C46 /* LastInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastInterfaceController.swift; sourceTree = "<group>"; };
+		D0D842EA1B5590AE009B1F24 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../Downloads/ios-charts-swift-2.0/Charts/Charts.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D03108D11B3C55E800C9B7C9 /* HealthKit.framework in Frameworks */,
+				D0D842F01B5590CB009B1F24 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +192,7 @@
 		D03108751B3C55A200C9B7C9 = {
 			isa = PBXGroup;
 			children = (
+				D0D842EA1B5590AE009B1F24 /* Charts.xcodeproj */,
 				D03108D01B3C55E800C9B7C9 /* HealthKit.framework */,
 				D03108801B3C55A200C9B7C9 /* mobile */,
 				D03108991B3C55A200C9B7C9 /* mobileTests */,
@@ -284,6 +314,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D0D842EB1B5590AE009B1F24 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D0D842EF1B5590AE009B1F24 /* Charts.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -295,11 +333,13 @@
 				D031087B1B3C55A200C9B7C9 /* Frameworks */,
 				D031087C1B3C55A200C9B7C9 /* Resources */,
 				D03108CE1B3C55DC00C9B7C9 /* Embed App Extensions */,
+				D0D842F41B5590CB009B1F24 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				D03108C61B3C55DB00C9B7C9 /* PBXTargetDependency */,
+				D0D842F31B5590CB009B1F24 /* PBXTargetDependency */,
 			);
 			name = mobile;
 			productName = mobile;
@@ -402,6 +442,12 @@
 			mainGroup = D03108751B3C55A200C9B7C9;
 			productRefGroup = D031087F1B3C55A200C9B7C9 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D0D842EB1B5590AE009B1F24 /* Products */;
+					ProjectRef = D0D842EA1B5590AE009B1F24 /* Charts.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				D031087D1B3C55A200C9B7C9 /* mobile */,
@@ -411,6 +457,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D0D842EF1B5590AE009B1F24 /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = D0D842EE1B5590AE009B1F24 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D031087C1B3C55A200C9B7C9 /* Resources */ = {
@@ -518,6 +574,11 @@
 			isa = PBXTargetDependency;
 			target = D03108A91B3C55DB00C9B7C9 /* mobile WatchKit Extension */;
 			targetProxy = D03108C51B3C55DB00C9B7C9 /* PBXContainerItemProxy */;
+		};
+		D0D842F31B5590CB009B1F24 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Charts;
+			targetProxy = D0D842F21B5590CB009B1F24 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -637,6 +698,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = mobile/mobile.entitlements;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = mobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -648,6 +710,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = mobile/mobile.entitlements;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = mobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -76,7 +76,8 @@ class SleepAndHeartsViewController: UIViewController {
                 }
             }
             self.saveSleep(thisstart!, sleepEnd: thisend!, sleepQuality: data2sendlabel)
-            print("savingSLEEPsurvey")
+            print(data2sendlabel)
+            print("savingSLEEPsurvey \(data2sendlabel)")
         }
     
         private func saveSleep(sleepStart: String, sleepEnd: String, sleepQuality: String) {
