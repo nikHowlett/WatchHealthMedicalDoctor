@@ -146,9 +146,9 @@ class ViewCon3troller: UIViewController {
             typeLengthTime.text = "Annual"
             setupGraphDisplayAnnualy()
             if (whichData.selectedSegmentIndex == 1) {
-                //loadAnnually()
+                loadAnnual2()
             } else {
-                //loadAnnuallySleep()
+                loadAnnualS()
             }
             setupGraphDisplay()
         default:
@@ -173,7 +173,7 @@ class ViewCon3troller: UIViewController {
             } else if (timePeriodControl.selectedSegmentIndex == 2) {
                 loadMonthlySleep()
             } else {
-                //loadAnnuallySleep()
+                loadAnnualS()
             }
             setupGraphDisplay()
             //println("sleepcaserun")
@@ -193,7 +193,7 @@ class ViewCon3troller: UIViewController {
             } else if (timePeriodControl.selectedSegmentIndex == 2) {
                 loadMonthly()
             } else {
-                //loadAnnually()
+                loadAnnual2()
             }
             setupGraphDisplay()
             //println("tiredcaserun")
@@ -240,6 +240,7 @@ class ViewCon3troller: UIViewController {
     }
     
     func loadDaily() {
+        graphView.totalhmdm = CGFloat(0) * CGFloat(15.33) as! CGFloat
         let yesterday = NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Day, value: -1, toDate: NSDate(), options: [])
         let now = NSDate()
         graphView.graphPoints = []
@@ -265,6 +266,7 @@ class ViewCon3troller: UIViewController {
     }
     
     func loadDailySlepp() {
+        graphView.totalhmdm = CGFloat(0) * CGFloat(15.33) as! CGFloat
         let now = NSDate()
         graphView.graphPoints = []
         print("printing slpqal.count: \(slpqal.count)")
@@ -288,6 +290,7 @@ class ViewCon3troller: UIViewController {
     }
     
     func loadWeeklySleep() {
+        graphView.totalhmdm = CGFloat(0) * CGFloat(15.33) as! CGFloat
         let yesterDay = NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Day, value: -1, toDate: NSDate(), options: [])
         var yesterday = "\(yesterDay!)" as String
         yesterday = yesterday.substringToIndex(advance(yesterday.startIndex,10))
@@ -328,6 +331,7 @@ class ViewCon3troller: UIViewController {
                 if (convenientPastSeven[jkl] == hiking) {
                     print(slpqal)
                     graphView.graphPoints.append(slpqal[(slpqal.count-i)-1])
+                    //graphView.totalhmdm = CGFloat(250) - (CGFloat(jkl) * CGFloat(36)) as! CGFloat
                     jacobson = true
                 }
                 if (jkl == convenientPastSeven.count-1) && (jacobson == false) {
@@ -377,6 +381,7 @@ class ViewCon3troller: UIViewController {
     
     
     func loadWeekly() {
+        graphView.totalhmdm = CGFloat(0) * CGFloat(15.33) as! CGFloat
         let yesterDay = NSCalendar.currentCalendar().dateByAddingUnit(NSCalendarUnit.Day, value: -1, toDate: NSDate(), options: [])
         var yesterday = "\(yesterDay!)" as String
         yesterday = yesterday.substringToIndex(advance(yesterday.startIndex,10))
@@ -427,6 +432,7 @@ class ViewCon3troller: UIViewController {
     }
     
     func loadMonthly() {
+        graphView.totalhmdm = CGFloat(0) * CGFloat(15.33) as! CGFloat
         let now = NSDate()
         let schow = "\(now)"
         let monthChecker = schow.substringToIndex(advance(schow.startIndex,7))
@@ -455,6 +461,7 @@ class ViewCon3troller: UIViewController {
     }
     
     func loadMonthlySleep() {
+        graphView.totalhmdm = CGFloat(0) * CGFloat(15.33) as! CGFloat
         let now = NSDate()
         let schow = "\(now)"
         let monthChecker = schow.substringToIndex(advance(schow.startIndex,7))
@@ -480,6 +487,136 @@ class ViewCon3troller: UIViewController {
         }
         graphView.graphPoints = temparr
         maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
+    }
+    
+    /*func loadAnnually() {
+        let now = NSDate()
+        let schow = "\(now)"
+        let monthChecker = schow.substringToIndex(advance(schow.startIndex,4))
+        graphView.graphPoints = []
+        //load all the points in the year into an array
+        for (var i = 0; i < tiredz.count-1; i++) {
+            var thisTimeStampRaw = surveys[(tiredz.count-i) - 1].timeStamp
+            var hiking = thisTimeStampRaw.substringToIndex(advance(thisTimeStampRaw.startIndex,4))
+            var jacobson = false
+            for (var jkl = 0; jkl < tiredz.count; jkl++) {
+                if (monthChecker == hiking) {
+                    //print(slpqal)
+                    graphView.graphPoints.append(tiredz[(tiredz.count-i)-1])
+                    jacobson = true
+                }
+                /*if (jkl == convenientPastSeven.count-1) && (jacobson == false) {
+                graphView.graphPoints.append(0)
+                }*/
+            }
+        }
+        var temparr = [(Int)]()
+        for (var k = graphView.graphPoints.count-1; k >= 0; k = k - 1) {
+            temparr.append(graphView.graphPoints[k])
+        }
+        graphView.graphPoints = temparr
+        maxLabel.text = "\(graphView.graphPoints.maxElement()!)"
+    }*/
+    
+    func loadAnnual2() {
+        let now = NSDate()
+        let schow = "\(now)"
+        let month2Checker = schow.substringToIndex(advance(schow.startIndex,4))
+        graphView.graphPoints = []
+        //load all the points in the year into an array
+        for (var i = 0; i < tiredz.count-1; i++) {
+            var thisYear = surveys[(tiredz.count-i)-1].timeStamp
+            var thisYear3 = thisYear.substringToIndex(advance(thisYear.startIndex,4))
+            if (thisYear3 == month2Checker) {
+                graphView.graphPoints.append(tiredz[(tiredz.count-i)-1])
+            }
+        }
+        let monthChecker = schow.substringToIndex(advance(schow.startIndex,7))
+        var howmanymonthsarray:[String] = []
+        for (var i = 0; i < surveys.count-1; i++) {
+            var thisYear = surveys[(tiredz.count-i)-1].timeStamp
+            var thisYear2 = thisYear.substringToIndex(advance(thisYear.startIndex,7))
+            if (thisYear2 == monthChecker) {
+                howmanymonthsarray.append(thisYear2)
+            }
+        }
+        //now based on that array, find the earliest point and find out when it was
+        let firstOrder = howmanymonthsarray[0]
+        let lastOrder = howmanymonthsarray[howmanymonthsarray.count-1]
+        let fourLong = "01234"
+        let firstNum = firstOrder.substringFromIndex(fourLong.endIndex)
+        let lastNum = lastOrder.substringFromIndex(fourLong.endIndex)
+        let monthInt1:Int? = Int(firstNum)
+        let monthInt2:Int? = Int(lastNum)
+        var theFinalMonth = 0
+        var howManyMonthsBack = 0
+        //based on the month you find out here
+        if (monthInt1! > monthInt2!) {
+            theFinalMonth = monthInt2!
+            howManyMonthsBack = monthInt2!-monthInt1!
+        } else {
+            theFinalMonth = monthInt1!
+            howManyMonthsBack = monthInt1!-monthInt2!
+        }
+        //compare it with the months that will be listed in the graph
+        var jk = 7 - howManyMonthsBack
+        //now update the graph to not start until that month
+        var temparr = [(Int)]()
+        graphView.totalhmdm = CGFloat(jk) * CGFloat(15.33) as! CGFloat
+        for (var k = graphView.graphPoints.count-1; k >= 0; k = k - 1) {
+            temparr.append(graphView.graphPoints[k])
+        }
+    }
+    
+    func loadAnnualS() {
+        let now = NSDate()
+        let schow = "\(now)"
+        let month2Checker = schow.substringToIndex(advance(schow.startIndex,4))
+        graphView.graphPoints = []
+        //load all the points in the year into an array
+        for (var i = 0; i < slpqal.count-1; i++) {
+            var thisYear = sleeps[(slpqal.count-i)-1].sleepEnd
+            var thisYear3 = thisYear.substringToIndex(advance(thisYear.startIndex,4))
+            if (thisYear3 == month2Checker) {
+                graphView.graphPoints.append(slpqal[(slpqal.count-i)-1])
+            }
+        }
+        let monthChecker = schow.substringToIndex(advance(schow.startIndex,7))
+        var howmanymonthsarray:[String] = []
+        for (var xf = 0; xf < sleeps.count-1; xf++) {
+            var thisYear = sleeps[(sleeps.count-xf)-1].sleepEnd
+            var thisYear2 = thisYear.substringToIndex(advance(thisYear.startIndex,7))
+            if (thisYear2 == monthChecker) {
+                howmanymonthsarray.append(thisYear2)
+                print(howmanymonthsarray.count)
+            }
+        }
+        //now based on that array, find the earliest point and find out when it was
+        let firstOrder = howmanymonthsarray[0]
+        let lastOrder = howmanymonthsarray[howmanymonthsarray.count-1]
+        let fourLong = "01234"
+        let firstNum = firstOrder.substringFromIndex(fourLong.endIndex)
+        let lastNum = lastOrder.substringFromIndex(fourLong.endIndex)
+        let monthInt1:Int? = Int(firstNum)
+        let monthInt2:Int? = Int(lastNum)
+        var theFinalMonth = 0
+        var howManyMonthsBack = 0
+        //based on the month you find out here
+        if (monthInt1! > monthInt2!) {
+            theFinalMonth = monthInt2!
+            howManyMonthsBack = monthInt2!-monthInt1!
+        } else {
+            theFinalMonth = monthInt1!
+            howManyMonthsBack = monthInt1!-monthInt2!
+        }
+        //compare it with the months that will be listed in the graph
+        var jk = 7 - howManyMonthsBack
+        //now update the graph to not start until that month
+        var temparr = [(Int)]()
+        graphView.totalhmdm = CGFloat(jk) * CGFloat(15.33) as! CGFloat
+        for (var k = graphView.graphPoints.count-1; k >= 0; k = k - 1) {
+            temparr.append(graphView.graphPoints[k])
+        }
     }
     
     func setupGraphDisplayDaily() {
@@ -520,8 +657,9 @@ class ViewCon3troller: UIViewController {
         let componentOptions:NSCalendarUnit = .Month
         let components = calendar.components(componentOptions,
             fromDate: NSDate())
-        var month = components.month-1
-        let monthNameAbbrvArray = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"]
+        var month = components.month
+        //graphView.totalhmdm = CGFloat(15) * CGFloat(month) as! CGFloat
+        let monthNameAbbrvArray = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D", "J"]
         for i in Array((1...monthNameAbbrvArray.count).reverse()) {
             if let labelView = graphView.viewWithTag(i) as? UILabel {
                 if month == 12 {
@@ -548,6 +686,8 @@ class ViewCon3troller: UIViewController {
         let components = calendar.components(componentOptions,
             fromDate: NSDate())
         let monthinorder = components.month
+        //let dayinorder = components.day
+        //graphView.totalhmdm = CGFloat(15) * CGFloat(monthinorder) as! CGFloat
         var month = components.month-1
         let monthNameAbbrvArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
         let monthAbbrev = monthNameAbbrvArray[month]
